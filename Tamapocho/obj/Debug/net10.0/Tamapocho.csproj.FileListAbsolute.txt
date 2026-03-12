@@ -1,0 +1,14 @@
+/home/adrmarcor4/Escritorio/JuegoTamapocho/Tamapocho/bin/Debug/net10.0/Tamapocho
+/home/adrmarcor4/Escritorio/JuegoTamapocho/Tamapocho/bin/Debug/net10.0/Tamapocho.deps.json
+/home/adrmarcor4/Escritorio/JuegoTamapocho/Tamapocho/bin/Debug/net10.0/Tamapocho.runtimeconfig.json
+/home/adrmarcor4/Escritorio/JuegoTamapocho/Tamapocho/bin/Debug/net10.0/Tamapocho.dll
+/home/adrmarcor4/Escritorio/JuegoTamapocho/Tamapocho/bin/Debug/net10.0/Tamapocho.pdb
+/home/adrmarcor4/Escritorio/JuegoTamapocho/Tamapocho/obj/Debug/net10.0/Tamapocho.GeneratedMSBuildEditorConfig.editorconfig
+/home/adrmarcor4/Escritorio/JuegoTamapocho/Tamapocho/obj/Debug/net10.0/Tamapocho.AssemblyInfoInputs.cache
+/home/adrmarcor4/Escritorio/JuegoTamapocho/Tamapocho/obj/Debug/net10.0/Tamapocho.AssemblyInfo.cs
+/home/adrmarcor4/Escritorio/JuegoTamapocho/Tamapocho/obj/Debug/net10.0/Tamapocho.csproj.CoreCompileInputs.cache
+/home/adrmarcor4/Escritorio/JuegoTamapocho/Tamapocho/obj/Debug/net10.0/Tamapocho.dll
+/home/adrmarcor4/Escritorio/JuegoTamapocho/Tamapocho/obj/Debug/net10.0/refint/Tamapocho.dll
+/home/adrmarcor4/Escritorio/JuegoTamapocho/Tamapocho/obj/Debug/net10.0/Tamapocho.pdb
+/home/adrmarcor4/Escritorio/JuegoTamapocho/Tamapocho/obj/Debug/net10.0/Tamapocho.genruntimeconfig.cache
+/home/adrmarcor4/Escritorio/JuegoTamapocho/Tamapocho/obj/Debug/net10.0/ref/Tamapocho.dll
