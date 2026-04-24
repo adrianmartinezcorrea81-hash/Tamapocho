@@ -7,7 +7,7 @@ public class Tamapochocunyao : Tamapocho , Itamcunyao
     public enum EstadodeCunyao
     {
        
-        Normal, ConPalilloEnLaboca, ExpertoEnCriptos, AsadorDeBarbacoas, Tolosa //Tolosa(To lo sabe)
+        Normal, ConPalilloEnLaboca, ExpertoEnCriptos, AsadorDeBarbacoas, Tolosa, INSUFRIBLE //Tolosa(To lo sabe)
     }
 
     public Tamapochocunyao(string nombreTama, int vidaTama, Jugador duenyo, int energia, int felicidad, double NivelChistes, double Nivel, bool vivo):base( nombreTama,  vidaTama,  duenyo,  energia,  felicidad, Nivel, vivo)

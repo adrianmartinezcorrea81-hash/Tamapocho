@@ -5,7 +5,7 @@ public class TamapochoHippie : Tamapocho , ITamHippie
     public enum EstadoHigh
     
     {
-        Normal, Castañuela, Empastrao, Tofu, Brote
+        Normal, Castañuela, Empastrao, Tofu, Brote, ModoZen
     }
     public TamapochoHippie(string nombreTama, int vidaTama, Jugador duenyo, int energia, int felicidad, double nivelHigh, double Nivel, bool vivo):base( nombreTama,  vidaTama,  duenyo,  energia,  felicidad, Nivel, vivo)
     {

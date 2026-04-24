@@ -100,7 +100,7 @@ public class JuegoTam
                     generoTamaTiktok=Genero.HOMBRE;
                 }
                 TextoMas("Nombre="); string nombreTamaTik = Console.ReadLine();
-                TamapochoTikTok miTamaTikTok= new TamapochoTikTok(nombreTamaTik,100, criador,100,100,0,true,generoTamaTiktok);
+                TamapochoTikTok miTamaTikTok= new TamapochoTikTok(nombreTamaTik,100, criador,100,100,0,true,generoTamaTiktok,0);
                 Console.WriteLine(miTamaTikTok);
 
                 break;

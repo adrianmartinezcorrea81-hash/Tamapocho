@@ -4,9 +4,9 @@ public class TamapochoInformatico : Tamapocho , ITamInfor
     public double NivelCafeina;
     private bool Vivo; //Será la condicion para que puedas jugar
 
-    public enum EstadoEnergitico
+    public enum EstadoEnergetico
     {
-        DEPRIMIDO, NORMAL, EMOCIONADO, HIPERACTIVO, PAROCARDIACO
+        DEPRIMIDO, NORMAL, EMOCIONADO, HIPERACTIVO, PAROCARDIACO, SENIOR
 
     }
 

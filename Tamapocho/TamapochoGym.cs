@@ -2,6 +2,10 @@ public class TamapochoGymBro: Tamapocho, IGymbro
 {
     public double FuerzaTama; //En el minijuego que tenga si no tiene la fuerza suficiente para yo que se mover algo que lo tengas que chetar mas 
 
+    public enum NivelCulturista
+    {
+        FLAKITO, CALISTENICO, TIOGRANDE, ENORME,CULTURISTANATTY, CHUZAO //CHUZAO SOLO CON SUPPROHI
+    }
     public TamapochoGymBro(string nombreTama, int vidaTama, Jugador duenyo, int energia, int felicidad, int fuerzaTama, double Nivel,bool vivo):base( nombreTama,  vidaTama,  duenyo,  energia,  felicidad, Nivel,vivo)
     {
         FuerzaTama=fuerzaTama;
