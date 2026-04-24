@@ -61,12 +61,19 @@ public class JuegoTam
                 break;
 
             case 3:
-                Texto("Has elegido al Tamapocho Informatico \nEspero que estés rapido programando jeje");
+                Texto("Has elegido al Tamapocho Informatico \nEspero que estés rapido programando jeje y preparate para beber muchas monsters");
+                TextoMas("Nombre="); string nombreTamaInfor = Console.ReadLine();
+
+                TamapochoInformatico miTamapochoInfor = new TamapochoInformatico(nombreTamaInfor, 100, criador, 100, 100, 0, 0, true);
+                miTamapochoInfor.IniciarJuegoInfor(miTamapochoInfor);
                 break;
 
 
             case 4:
                 Texto("Has elegido al Tamapocho Cuñao \nEspero que tengas bien entrenadas esas bromas pasadas de moda jeje");
+                TextoMas("Nombre="); string nombreTamaCunyao = Console.ReadLine();
+                Tamapochocunyao miTamapochoCunyao = new Tamapochocunyao(nombreTamaCunyao, 100, criador, 100, 100, 0, 0, true);
+                miTamapochoCunyao.IniciarJuegoInfor(miTamapochoCunyao);
                 break;
 
             case 5:
