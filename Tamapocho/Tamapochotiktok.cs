@@ -97,14 +97,19 @@ public class TamapochoTikTok : Tamapocho, ITamapochotk
 
     public override string ToString()
     {
-        return $"Información de tu tamapocho\nTipo= {this.GetType()}\nNivel= {Nivel} \nNombre= '{NombreTama}'\nVida= {VidaTama}\nDueño= '{Duenyo.NombreJug},{Duenyo.EdadJug}'\nEnergia= {Energia}\nFelicidad= {Felicidad}\nGenero= {this.Sexo.ToString().ToUpper()}";
+        return $"Información de tu tamapocho\nTipo= {this.GetType()}\nNivel= {Nivel} \nNombre= '{NombreTama}'\nVida= {VidaTama}\nDueño= '{Duenyo.NombreJug},{Duenyo.EdadJug}'\nEnergia= {Energia}\nFelicidad= {Felicidad}\nGenero= {this.Sexo.ToString().ToUpper()}\nDinero={Duenyo.Dinero}";
     }
     public void IniciarJuegoTikToker(TamapochoTikTok tamapochoTik)
     {
+        
+        JuegoTam.Texto($"Bienvenido {Duenyo.NombreJug}, has elegido a tu tamapocho a continuación tendrás su información:");
+        Console.WriteLine(tamapochoTik);
+
+
         while (Vivo)
         {
             Console.WriteLine(tamapochoTik);
-            Console.WriteLine($"1-Ver Estado Actual De {tamapochoTik.NombreTama}\n2-Grabar TikTok\n3-Tienda\n4-SALIR");
+            Console.WriteLine($"1-Ver Estado Actual De {tamapochoTik.NombreTama}\n2-Grabar TikTok\n3-Tienda\n4-Jugar Minijuego\n5-SALIR");
             int eleccion = Convert.ToInt32(Console.ReadLine());
 
             if (eleccion == 1)
@@ -148,20 +153,23 @@ public class TamapochoTikTok : Tamapocho, ITamapochotk
             }
             else if (eleccion == 4)
             {
+                Duenyo.Dinero += Minijuego.MinijuegoTikTok(tamapochoTik);
+            }
+            else if (eleccion == 5)
+            {
                 Vivo = false;
             }
             else
             {
                 Console.WriteLine("Eleccion Incorrecta");
+                continue;
             }
-
-
-
-
-
-
+            if (tamapochoTik.VidaTama <= 0)
+            {
+                JuegoTam.GameOver(tamapochoTik);
+                Vivo = false;
+            }
         }
-
 
     }
 }

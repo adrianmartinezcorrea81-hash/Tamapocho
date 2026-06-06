@@ -5,6 +5,8 @@ public class TamapochoGymBro : Tamapocho, IGymbro
     public double FuerzaTama; //En el minijuego que tenga si no tiene la fuerza suficiente para yo que se mover algo que lo tengas que chetar mas 
 
     public NivelCulturista EstadoEnForma;
+    
+
     public enum NivelCulturista
     {
         FLAKITO, CALISTENICO, TIOGRANDE, ENORME, CULTURISTANATTY, CHUZAO //CHUZAO SOLO CON SUPPROHI
@@ -44,18 +46,18 @@ public class TamapochoGymBro : Tamapocho, IGymbro
 
     public override string ToString()
     {
-        return $"Información de tu tamapocho\nTipo= {this.GetType()}\nNivel= {Nivel} \nNombre= '{NombreTama}'\nVida= {VidaTama}\nDueño= '{Duenyo.NombreJug},{Duenyo.EdadJug}'\nEnergia= {Energia}\nFelicidad= {Felicidad}\nFuerza= {FuerzaTama}";
+        return $"Información de tu tamapocho\nTipo= {this.GetType()}\nNivel= {Nivel} \nNombre= '{NombreTama}'\nVida= {VidaTama}\nDueño= '{Duenyo.NombreJug},{Duenyo.EdadJug}'\nEnergia= {Energia}\nFelicidad= {Felicidad}\nFuerza= {FuerzaTama}\nDinero={Duenyo.Dinero}";
     }
 
     public void IniciarJuegoGym(TamapochoGymBro tamaGym)
     {
-
-        while (Vivo)
-        {
             JuegoTam.Texto($"Bienvenido {Duenyo.NombreJug}, has elegido a tu tamapocho a continuación tendrás su información:");
             Console.WriteLine(tamaGym);
 
-            Console.WriteLine($"1-Ver Estado Actual De {tamaGym.NombreTama}\n2-Entrenar\n3-Tienda\n4-SALIR");
+        while (Vivo)
+        {
+
+            Console.WriteLine($"1-Ver Estado Actual De {tamaGym.NombreTama}\n2-Entrenar\n3-Tienda\n4-Jugar Minijuego\n5-SALIR");
             int eleccion = Convert.ToInt32(Console.ReadLine());
             if (eleccion == 1)
             {
@@ -111,15 +113,23 @@ public class TamapochoGymBro : Tamapocho, IGymbro
                 int numArticulo = Convert.ToInt32(Console.ReadLine());
                 tiendaGym.Comprar(numArticulo, Duenyo, tamaGym);
             }
-
             else if (eleccion == 4)
+            {
+                Duenyo.Dinero += Minijuego.MinijuegoGym(tamaGym);
+            }
+            else if (eleccion == 5)
             {
                 Vivo = false;
             }
             else
             {
                 Console.WriteLine("Eleccion Incorrecta");
-                return;
+                continue;
+            }
+            if (tamaGym.VidaTama <= 0)
+            {
+                JuegoTam.GameOver(tamaGym);
+                Vivo = false;
             }
         }
 

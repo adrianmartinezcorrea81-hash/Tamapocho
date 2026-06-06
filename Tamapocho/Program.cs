@@ -2,6 +2,11 @@
 
 public class JuegoTam
 {
+
+    public static void GameOver(Tamapocho tama)
+    {
+        Console.WriteLine($"Has perdido, tu tamapocho {tama.NombreTama} ha muerto");
+    }
     
     public static void Texto(string texto, int velocidad = 30)
     {

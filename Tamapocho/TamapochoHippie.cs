@@ -34,7 +34,7 @@ public class TamapochoHippie : Tamapocho, ITamHippie
 
     public override string ToString()
     {
-        return $"Información de tu tamapocho\nTipo= {this.GetType()}\nNivel= {Nivel}\nNombre= '{NombreTama}'\nVida= {VidaTama}\nDueño= '{Duenyo.NombreJug},{Duenyo.EdadJug}'\nEnergia= {Energia}\nFelicidad= {Felicidad}\nNivel de High= {NivelHigh}";
+        return $"Información de tu tamapocho\nTipo= {this.GetType()}\nNivel= {Nivel}\nNombre= '{NombreTama}'\nVida= {VidaTama}\nDueño= '{Duenyo.NombreJug},{Duenyo.EdadJug}'\nEnergia= {Energia}\nFelicidad= {Felicidad}\nNivel de High= {NivelHigh}\nDinero={Duenyo.Dinero}";
     }
 
     //Aqui voy a crear un metodo donde se le pase dicho tamapocho por parametro y que se inicie un juego 
@@ -42,14 +42,16 @@ public class TamapochoHippie : Tamapocho, ITamHippie
     public void IniciarJuegoHipp(TamapochoHippie tamaH)
     {
 
+        JuegoTam.Texto($"Bienvenido {Duenyo.NombreJug}, has elegido a tu tamapocho a continuación tendrás su información:");
+        Console.WriteLine(tamaH);
 
         while (Vivo)
         {
-            JuegoTam.Texto($"Bienvenido {Duenyo.NombreJug}, has elegido a tu tamapocho a continuación tendrás su información:");
-            Console.WriteLine(tamaH);
 
-            Console.WriteLine($"1-Ver Estado Actual De {tamaH.NombreTama}\n2-Fumar\n3-Tienda\n4-SALIR");
+
+            Console.WriteLine($"1-Ver Estado Actual De {tamaH.NombreTama}\n2-Fumar\n3-Tienda\n4-Jugar Minijuego\n5-SALIR");
             int eleccion = Convert.ToInt32(Console.ReadLine());
+
             if (eleccion == 1)
             {
                 Console.WriteLine(tamaH);
@@ -103,7 +105,7 @@ public class TamapochoHippie : Tamapocho, ITamHippie
                 else
                 {
                     Console.WriteLine("No tienes nada para fumar, ve a la tienda.");
-                    return;
+                    continue;
                 }
 
             }
@@ -121,10 +123,19 @@ public class TamapochoHippie : Tamapocho, ITamHippie
             {
                 Vivo = false;
             }
+            else if (eleccion == 5)
+            {
+                Vivo = false;
+            }
             else
             {
                 Console.WriteLine("Eleccion Incorrecta");
-                return;
+                continue;
+            }
+            if (tamaH.VidaTama <= 0)
+            {
+                JuegoTam.GameOver(tamaH);
+                Vivo = false;
             }
         }
     }

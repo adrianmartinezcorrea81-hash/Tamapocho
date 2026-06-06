@@ -57,20 +57,20 @@ public class Tamapochocunyao : Tamapocho, Itamcunyao
 
     public override string ToString()
     {
-        return $"Información de tu tamapocho\nTipo= {this.GetType()}\nNivel= {Nivel}\nNombre= '{NombreTama}'\nVida= {VidaTama}\nDueño= '{Duenyo.NombreJug},{Duenyo.EdadJug}'\nEnergia= {Energia}\nFelicidad= {Felicidad}\nNivel de Chistes= {NivelChistes}";
+        return $"Información de tu tamapocho\nTipo= {this.GetType()}\nNivel= {Nivel}\nNombre= '{NombreTama}'\nVida= {VidaTama}\nDueño= '{Duenyo.NombreJug},{Duenyo.EdadJug}'\nEnergia= {Energia}\nFelicidad= {Felicidad}\nNivel de Chistes= {NivelChistes}\nDinero={Duenyo.Dinero}";
     }
 
 
     public void IniciarJuegoInfor(Tamapochocunyao tamaCunya)
     {
 
+        JuegoTam.Texto($"Bienvenido {Duenyo.NombreJug}, has elegido a tu tamapocho a continuación tendrás su información:");
+        Console.WriteLine(tamaCunya);
 
         while (Vivo)
         {
-            JuegoTam.Texto($"Bienvenido {Duenyo.NombreJug}, has elegido a tu tamapocho a continuación tendrás su información:");
-            Console.WriteLine(tamaCunya);
 
-            Console.WriteLine($"1-Ver Estado Actual De {tamaCunya.NombreTama}\n2-Contar Un Chiste\n3-Tienda\n4-SALIR");
+            Console.WriteLine($"1-Ver Estado Actual De {tamaCunya.NombreTama}\n2-Contar Un Chiste\n3-Tienda\n4-Jugar Minijuego\n5-SALIR");
             int eleccion = Convert.ToInt32(Console.ReadLine());
             if (eleccion == 1)
             {
@@ -115,18 +115,29 @@ public class Tamapochocunyao : Tamapocho, Itamcunyao
                 int numArticulo = Convert.ToInt32(Console.ReadLine());
                 tiendacunyao.Comprar(numArticulo, Duenyo, tamaCunya);
             }
-
             else if (eleccion == 4)
+            {
+                Duenyo.Dinero += Minijuego.MinijuegoCunyao();
+                continue;
+            }
+            else if (eleccion == 5)
             {
                 Vivo = false;
             }
             else
             {
                 Console.WriteLine("Eleccion Incorrecta");
-                return;
+                Console.Clear();
+                continue;
+            }
+            if (tamaCunya.VidaTama <= 0)
+            {
+                JuegoTam.GameOver(tamaCunya);
+                Vivo = false;
             }
 
         }
+
     }
 
 }
