@@ -1,4 +1,4 @@
 public interface ITamHippie
 {
-    public double Fumar();
+    public double Fumar(string itemfum);
 }

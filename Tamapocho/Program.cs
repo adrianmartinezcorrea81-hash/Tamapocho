@@ -2,6 +2,7 @@
 
 public class JuegoTam
 {
+    
     public static void Texto(string texto, int velocidad = 30)
     {
         foreach (char letra in texto)
@@ -23,6 +24,8 @@ public class JuegoTam
     }
     public static void Main()
     {
+        Tienda tienda= new Tienda();
+        tienda.MostrarItems();
         
         Texto("Bienvenido a Tamapocho Game");
         Texto("En primer lugar para continuar con tu Aventura deberás asignarte un nombre y tu Edad");
@@ -41,13 +44,14 @@ public class JuegoTam
 
         switch (eleccion)
         {
+            
             case 1:
                 Texto("Has elegido al Tamapocho hippie \nUna vida llena de paz y hierba te espera....");
                 //(string nombreTama, int vidaTama, Jugador duenyo, int energia, int felicidad, double nivelHigh)
 
                 TextoMas("Nombre="); string nombreTamaHip = Console.ReadLine();
 
-                TamapochoHippie miTamapochoHip = new TamapochoHippie(nombreTamaHip, 100, criador, 100, 100, 0, 0, true);
+                TamapochoHippie miTamapochoHip = new TamapochoHippie(nombreTamaHip, 100, criador, 100, 100, 0, 0, true, TamapochoHippie.EstadoHigh.Normal);
                 miTamapochoHip.IniciarJuegoHipp(miTamapochoHip);
 
                 break;
@@ -56,7 +60,7 @@ public class JuegoTam
                 Texto("Has elegido al Tamapocho Gymbro \nEspero que tengas ganas de levantar esos hierros jeje");
                 TextoMas("Nombre="); string nombreTamaGym = Console.ReadLine();
 
-                TamapochoGymBro miTamapochoGym = new TamapochoGymBro(nombreTamaGym, 100, criador, 100, 100, 5, 0, true);
+                TamapochoGymBro miTamapochoGym = new TamapochoGymBro(nombreTamaGym, 100, criador, 100, 100, 5, 0, true, TamapochoGymBro.NivelCulturista.FLAKITO);
                 miTamapochoGym.IniciarJuegoGym(miTamapochoGym);
                 break;
 
@@ -64,7 +68,7 @@ public class JuegoTam
                 Texto("Has elegido al Tamapocho Informatico \nEspero que estés rapido programando jeje y preparate para beber muchas monsters");
                 TextoMas("Nombre="); string nombreTamaInfor = Console.ReadLine();
 
-                TamapochoInformatico miTamapochoInfor = new TamapochoInformatico(nombreTamaInfor, 100, criador, 100, 100, 0, 0, true);
+                TamapochoInformatico miTamapochoInfor = new TamapochoInformatico(nombreTamaInfor, 100, criador, 100, 100, 0, 0, true, TamapochoInformatico.EstadoEnergetico.DEPRIMIDO);
                 miTamapochoInfor.IniciarJuegoInfor(miTamapochoInfor);
                 break;
 
@@ -72,7 +76,7 @@ public class JuegoTam
             case 4:
                 Texto("Has elegido al Tamapocho Cuñao \nEspero que tengas bien entrenadas esas bromas pasadas de moda jeje");
                 TextoMas("Nombre="); string nombreTamaCunyao = Console.ReadLine();
-                Tamapochocunyao miTamapochoCunyao = new Tamapochocunyao(nombreTamaCunyao, 100, criador, 100, 100, 0, 0, true);
+                Tamapochocunyao miTamapochoCunyao = new Tamapochocunyao(nombreTamaCunyao, 100, criador, 100, 100, 0, 0, true,Tamapochocunyao.EstadodeCunyao.Normal);
                 miTamapochoCunyao.IniciarJuegoInfor(miTamapochoCunyao);
                 break;
 
@@ -101,7 +105,7 @@ public class JuegoTam
                 }
                 TextoMas("Nombre="); string nombreTamaTik = Console.ReadLine();
                 TamapochoTikTok miTamaTikTok= new TamapochoTikTok(nombreTamaTik,100, criador,100,100,0,true,generoTamaTiktok,0);
-                Console.WriteLine(miTamaTikTok);
+                miTamaTikTok.IniciarJuegoTikToker(miTamaTikTok); 
 
                 break;
 

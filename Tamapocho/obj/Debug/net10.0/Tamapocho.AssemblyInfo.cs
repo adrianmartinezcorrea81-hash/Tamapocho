@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Tamapocho")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2c81af8dee31c4b5a262d592f31def9e2bbad545")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c4f9d725a303c23c4d351dd75ecf665041419add")]
 [assembly: System.Reflection.AssemblyProductAttribute("Tamapocho")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Tamapocho")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

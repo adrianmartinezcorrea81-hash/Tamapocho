@@ -1,4 +1,4 @@
 public interface ITamapochotk
 {
-    public double GrabarTikTok();
+    public int GrabarTikTok();
 }
