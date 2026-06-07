@@ -26,7 +26,7 @@ public class TamapochoInformatico : Tamapocho, ITamInfor
 
     public override string ToString()
     {
-        return $"Información de tu tamapocho\nTipo= {this.GetType()}\nNivel= {Nivel}\nNombre= '{NombreTama}'\nVida= {VidaTama}\nDueño= '{Duenyo.NombreJug},{Duenyo.EdadJug}'\nEnergia= {Energia}\nFelicidad= {Felicidad}\nNivel de Cafeina= {NivelCafeina}\nDinero={Duenyo.Dinero}";
+        return $"Información de tu tamapocho\nTipo= {this.GetType()}\nNivel= {Nivel}({XP}xp)\nNombre= '{NombreTama}'\nVida= {VidaTama}\nDueño= '{Duenyo.NombreJug},{Duenyo.EdadJug}'\nEnergia= {Energia}\nFelicidad= {Felicidad}\nNivel de Cafeina= {NivelCafeina}\nDinero={Duenyo.Dinero}";
     }
 
 
@@ -43,6 +43,7 @@ public class TamapochoInformatico : Tamapocho, ITamInfor
             int eleccion = Convert.ToInt32(Console.ReadLine());
             if (eleccion == 1)
             {
+                Console.Clear();
                 Console.WriteLine(tamaInfor);
             }
             else if (eleccion == 2)
@@ -115,7 +116,7 @@ public class TamapochoInformatico : Tamapocho, ITamInfor
             else if (eleccion == 3)
             {
                 Tienda tiendaGym = new Tienda();
-
+                Console.Clear();
                 tiendaGym.MostrarItems();
                 Console.WriteLine($"¿Que articulo deseas comprar?\n(escriba el numero)\nMonedas Disponibles={Duenyo.Dinero}");
                 int numArticulo = Convert.ToInt32(Console.ReadLine());

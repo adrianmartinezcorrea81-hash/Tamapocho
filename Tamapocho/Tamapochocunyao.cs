@@ -57,13 +57,14 @@ public class Tamapochocunyao : Tamapocho, Itamcunyao
 
     public override string ToString()
     {
-        return $"Información de tu tamapocho\nTipo= {this.GetType()}\nNivel= {Nivel}\nNombre= '{NombreTama}'\nVida= {VidaTama}\nDueño= '{Duenyo.NombreJug},{Duenyo.EdadJug}'\nEnergia= {Energia}\nFelicidad= {Felicidad}\nNivel de Chistes= {NivelChistes}\nDinero={Duenyo.Dinero}";
+        return $"Información de tu tamapocho\nTipo= {this.GetType()}\nNivel= {Nivel}({XP}xp)\nNombre= '{NombreTama}'\nVida= {VidaTama}\nDueño= '{Duenyo.NombreJug},{Duenyo.EdadJug}'\nEnergia= {Energia}\nFelicidad= {Felicidad}\nNivel de Chistes= {NivelChistes}\nDinero={Duenyo.Dinero}";
     }
 
 
     public void IniciarJuegoCunyao(Tamapochocunyao tamaCunya)
     {
 
+        Console.Clear();
         JuegoTam.Texto($"Bienvenido {Duenyo.NombreJug}, has elegido a tu tamapocho a continuación tendrás su información:");
         Console.WriteLine(tamaCunya);
 
@@ -74,6 +75,7 @@ public class Tamapochocunyao : Tamapocho, Itamcunyao
             int eleccion = Convert.ToInt32(Console.ReadLine());
             if (eleccion == 1)
             {
+                Console.Clear();
                 Console.WriteLine(tamaCunya);
             }
             else if (eleccion == 2)
@@ -110,7 +112,7 @@ public class Tamapochocunyao : Tamapocho, Itamcunyao
             else if (eleccion == 3)
             {
                 Tienda tiendacunyao = new Tienda();
-
+                Console.Clear();
                 tiendacunyao.MostrarItems();
                 Console.WriteLine($"¿Que articulo deseas comprar?\n(escriba el numero)\nMonedas Disponibles={Duenyo.Dinero}");
                 int numArticulo = Convert.ToInt32(Console.ReadLine());
@@ -118,6 +120,7 @@ public class Tamapochocunyao : Tamapocho, Itamcunyao
             }
             else if (eleccion == 4)
             {
+                Console.Clear();
                 int monedasGanadas = Minijuego.MinijuegoCunyao();
                 Duenyo.Dinero += monedasGanadas;
                 if (monedasGanadas > 0) // Asi solo si acierta gana xp

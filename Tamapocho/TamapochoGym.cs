@@ -46,11 +46,12 @@ public class TamapochoGymBro : Tamapocho, IGymbro
 
     public override string ToString()
     {
-        return $"Información de tu tamapocho\nTipo= {this.GetType()}\nNivel= {Nivel} \nNombre= '{NombreTama}'\nVida= {VidaTama}\nDueño= '{Duenyo.NombreJug},{Duenyo.EdadJug}'\nEnergia= {Energia}\nFelicidad= {Felicidad}\nFuerza= {FuerzaTama}\nDinero={Duenyo.Dinero}";
+        return $"Información de tu tamapocho\nTipo= {this.GetType()}\nNivel= {Nivel}({XP}xp) \nNombre= '{NombreTama}'\nVida= {VidaTama}\nDueño= '{Duenyo.NombreJug},{Duenyo.EdadJug}'\nEnergia= {Energia}\nFelicidad= {Felicidad}\nFuerza= {FuerzaTama}\nDinero={Duenyo.Dinero}";
     }
 
     public void IniciarJuegoGym(TamapochoGymBro tamaGym)
     {
+        Console.Clear();
         JuegoTam.Texto($"Bienvenido {Duenyo.NombreJug}, has elegido a tu tamapocho a continuación tendrás su información:");
         Console.WriteLine(tamaGym);
 
@@ -61,6 +62,7 @@ public class TamapochoGymBro : Tamapocho, IGymbro
             int eleccion = Convert.ToInt32(Console.ReadLine());
             if (eleccion == 1)
             {
+                Console.Clear();
                 Console.WriteLine(tamaGym);
             }
             else if (eleccion == 2)
@@ -108,7 +110,7 @@ public class TamapochoGymBro : Tamapocho, IGymbro
             else if (eleccion == 3)
             {
                 Tienda tiendaGym = new Tienda();
-
+                Console.Clear();
                 tiendaGym.MostrarItems();
                 Console.WriteLine($"¿Que articulo deseas comprar?\n(escriba el numero)\nMonedas Disponibles={Duenyo.Dinero}");
                 int numArticulo = Convert.ToInt32(Console.ReadLine());
@@ -133,6 +135,7 @@ public class TamapochoGymBro : Tamapocho, IGymbro
             else
             {
                 Console.WriteLine("Eleccion Incorrecta");
+                Console.Clear();
                 continue;
             }
             if (tamaGym.VidaTama <= 0)

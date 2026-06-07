@@ -97,7 +97,7 @@ public class TamapochoTikTok : Tamapocho, ITamapochotk
 
     public override string ToString()
     {
-        return $"Información de tu tamapocho\nTipo= {this.GetType()}\nNivel= {Nivel} \nNombre= '{NombreTama}'\nVida= {VidaTama}\nDueño= '{Duenyo.NombreJug},{Duenyo.EdadJug}'\nEnergia= {Energia}\nFelicidad= {Felicidad}\nGenero= {this.Sexo.ToString().ToUpper()}\nDinero={Duenyo.Dinero}";
+        return $"Información de tu tamapocho\nTipo= {this.GetType()}\nNivel= {Nivel}({XP}xp) \nNombre= '{NombreTama}'\nVida= {VidaTama}\nDueño= '{Duenyo.NombreJug},{Duenyo.EdadJug}'\nEnergia= {Energia}\nFelicidad= {Felicidad}\nGenero= {this.Sexo.ToString().ToUpper()}\nDinero={Duenyo.Dinero}";
     }
     public void IniciarJuegoTikToker(TamapochoTikTok tamapochoTik)
     {
@@ -114,6 +114,7 @@ public class TamapochoTikTok : Tamapocho, ITamapochotk
 
             if (eleccion == 1)
             {
+                Console.Clear();
                 Console.WriteLine(tamapochoTik);
             }
             else if (eleccion == 2)
@@ -146,6 +147,7 @@ public class TamapochoTikTok : Tamapocho, ITamapochotk
             else if (eleccion == 3)
             {
                 Tienda tiendaTik = new Tienda();
+                Console.Clear();
                 tiendaTik.MostrarItems();
                 Console.WriteLine($"¿Que articulo deseas comprar?\n(escriba el numero)\nMonedas Disponibles={Duenyo.Dinero}");
                 int numArticulo = Convert.ToInt32(Console.ReadLine());
@@ -153,6 +155,7 @@ public class TamapochoTikTok : Tamapocho, ITamapochotk
             }
             else if (eleccion == 4)
             {
+                Console.Clear();
                 int monedasGanadas = Minijuego.MinijuegoTikTok(tamapochoTik); 
                 Duenyo.Dinero += monedasGanadas;
                 if (monedasGanadas > 0)

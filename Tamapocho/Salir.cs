@@ -6,7 +6,7 @@ public class SalirGuardado //Voy a crear un cs para esto para no acumular mas co
 
     public static bool SalirCunyao(Tamapochocunyao tamapochocunyao, Jugador jugador)
     {
-        
+        Console.Clear();
         Console.WriteLine("¿Quieres guardar la partida antes de salir?\n1-Sí\n2-No");
         int eleccion = Convert.ToInt32(Console.ReadLine());
         if (eleccion == 1)
@@ -49,6 +49,7 @@ public class SalirGuardado //Voy a crear un cs para esto para no acumular mas co
     }
     public static bool SalirGym(TamapochoGymBro tamapochoGymBro, Jugador jugador)
     {
+        Console.Clear();
         Console.WriteLine("¿Quieres guardar la partida antes de salir?\n1-Sí\n2-No");
         int eleccion = Convert.ToInt32(Console.ReadLine());
         if (eleccion == 1)
@@ -89,6 +90,7 @@ public class SalirGuardado //Voy a crear un cs para esto para no acumular mas co
     }
     public static bool SalirHippie(TamapochoHippie tamapochoHippie, Jugador jugador)
     {
+        Console.Clear();
         Console.WriteLine("¿Quieres guardar la partida antes de salir?\n1-Sí\n2-No");
         int eleccion = Convert.ToInt32(Console.ReadLine());
         if (eleccion == 1)
@@ -129,6 +131,7 @@ public class SalirGuardado //Voy a crear un cs para esto para no acumular mas co
     }
     public static bool SalirInfor(TamapochoInformatico tamapochoInformatico, Jugador jugador)
     {
+        Console.Clear();
         Console.WriteLine("¿Quieres guardar la partida antes de salir?\n1-Sí\n2-No");
         int eleccion = Convert.ToInt32(Console.ReadLine());
         if (eleccion == 1)
@@ -169,6 +172,7 @@ public class SalirGuardado //Voy a crear un cs para esto para no acumular mas co
     }
     public static bool SalirTikTok(TamapochoTikTok tamapochoTikTok, Jugador jugador)
     {
+        Console.Clear();
         Console.WriteLine("¿Quieres guardar la partida antes de salir?\n1-Sí\n2-No");
         int eleccion = Convert.ToInt32(Console.ReadLine());
         if (eleccion == 1)

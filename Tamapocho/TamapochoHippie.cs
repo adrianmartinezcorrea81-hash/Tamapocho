@@ -34,7 +34,7 @@ public class TamapochoHippie : Tamapocho, ITamHippie
 
     public override string ToString()
     {
-        return $"Información de tu tamapocho\nTipo= {this.GetType()}\nNivel= {Nivel}\nNombre= '{NombreTama}'\nVida= {VidaTama}\nDueño= '{Duenyo.NombreJug},{Duenyo.EdadJug}'\nEnergia= {Energia}\nFelicidad= {Felicidad}\nNivel de High= {NivelHigh}\nDinero={Duenyo.Dinero}";
+        return $"Información de tu tamapocho\nTipo= {this.GetType()}\nNivel= {Nivel}({XP}xp)\nNombre= '{NombreTama}'\nVida= {VidaTama}\nDueño= '{Duenyo.NombreJug},{Duenyo.EdadJug}'\nEnergia= {Energia}\nFelicidad= {Felicidad}\nNivel de High= {NivelHigh}\nDinero={Duenyo.Dinero}";
     }
 
     //Aqui voy a crear un metodo donde se le pase dicho tamapocho por parametro y que se inicie un juego 
@@ -54,6 +54,7 @@ public class TamapochoHippie : Tamapocho, ITamHippie
 
             if (eleccion == 1)
             {
+                Console.Clear();
                 Console.WriteLine(tamaH);
             }
             else if (eleccion == 2)
@@ -112,7 +113,7 @@ public class TamapochoHippie : Tamapocho, ITamHippie
             else if (eleccion == 3)
             {
                 Tienda tiendaHippie = new Tienda();
-
+                Console.Clear();
                 tiendaHippie.MostrarItems();
                 Console.WriteLine($"¿Que articulo deseas comprar?\n(escriba el numero)\nMonedas Disponibles={Duenyo.Dinero}");
                 int numArticulo = Convert.ToInt32(Console.ReadLine());
@@ -121,6 +122,7 @@ public class TamapochoHippie : Tamapocho, ITamHippie
 
             else if (eleccion == 4)
             {
+                Console.Clear();
                 int monedasGanadas = Minijuego.MinijuegoHippie();
                 Duenyo.Dinero += monedasGanadas;
                 if (monedasGanadas > 0) // Asi solo si acierta gana xp
@@ -138,6 +140,7 @@ public class TamapochoHippie : Tamapocho, ITamHippie
             else
             {
                 Console.WriteLine("Eleccion Incorrecta");
+                Console.Clear();
                 continue;
             }
             if (tamaH.VidaTama <= 0)

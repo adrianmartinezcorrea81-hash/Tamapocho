@@ -11,5 +11,6 @@ public class Jugador
     {
         NombreJug=nombreJug;
         EdadJug=edadJug;
+        Dinero=50; //Le añado un dinero base al jugador para que asi resulte un poco mas facil el juego 
     }
 }

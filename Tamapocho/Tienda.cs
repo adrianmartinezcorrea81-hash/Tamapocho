@@ -132,11 +132,24 @@ public class Tienda
             case TipoEfecto.SubirEnergia:
                 tama.Energia += (int)(tama.Energia * item.ValorEfecto / 100.0);
                 Console.WriteLine($"Tu tamapocho ha obtenido un plus de {item.ValorEfecto}% de Energía");
+
+                //Me he fijado que no le habia puesto el subefecto ni al Cafe ni a la chuche
+                if (item.Nombre == "Cafe")
+                {
+                    tama.VidaTama -= 5;
+                    tama.Felicidad -= 5;
+                    Console.WriteLine("El bajón del café ha reducido 5 de Vida y 5 de Felicidad...");
+                }
                 break;
 
             case TipoEfecto.SubirFelicidad:
                 tama.Felicidad += (int)(tama.Felicidad * item.ValorEfecto / 100.0);
                 Console.WriteLine($"Tu tamapocho ha obtenido un plus de {item.ValorEfecto}% de Felicidad");
+                if (item.Nombre == "Chuchería")
+                {
+                    tama.VidaTama -= 3;
+                    Console.WriteLine("Tanta azúcar ha reducido 3 de Vida...");
+                }
                 break;
 
             case TipoEfecto.SubirXP:
@@ -189,8 +202,40 @@ public class Tienda
                 else Console.WriteLine("Este item es solo para el Cuñao.");
                 break;
 
+
+
+
             case TipoEfecto.DesbloquearEstado:
-                Console.WriteLine("Algo ha cambiado en tu tamapocho... descúbrelo tú mismo jeje");
+                //GymBro a chuzao
+                if (tama is TamapochoGymBro tamapochoGymBro)
+                {
+                    tamapochoGymBro.EstadoEnForma = TamapochoGymBro.NivelCulturista.CHUZAO;
+                    Console.WriteLine("Tu Gymbro ha tomado el suplemento prohibido... HA DEJADO DE SER NATTY");
+
+                }
+                //Hippie a Brote 
+                else if (tama is TamapochoHippie tamapochoHippie)
+                {
+                    tamapochoHippie.EstadoFum = TamapochoHippie.EstadoHigh.Brote;
+                    Console.WriteLine("Tu Hippie ha tenido un brote... esto ya si que no tiene vuelta atrás");
+
+                }
+                //Informatico a Sennior 
+                else if (tama is TamapochoInformatico tamapochoInformatico)
+                {
+                    tamapochoInformatico.estadoEnergetico = TamapochoInformatico.EstadoEnergetico.SENIOR;
+                    Console.WriteLine("Tu Informático ya es un Sennior de manual. ¿Premio o Castigo?");
+
+
+                }
+                //Cunyao a INSUFRIBLE
+                else if (tama is Tamapochocunyao tamapochocunyao)
+                {
+                    tamapochocunyao.RangoCunyao = Tamapochocunyao.EstadodeCunyao.INSUFRIBLE;
+                    Console.WriteLine("Tu Cuñao se ha bebido los dos packs de una sentada, ahora es completamente insufrible y puede que alcoholico.");
+
+
+                }
                 break;
         }
     }

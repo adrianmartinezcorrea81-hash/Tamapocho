@@ -1,1 +1,13 @@
-{"NombreJugador":"Adri","EdadJugador":7777,"Dinero":0,"TipoTamapocho":"Gym","NombreTama":"Delego","VidaTama":100,"Energia":100,"Felicidad":100,"Nivel":3,"AtributoEspecial":23,"Estado":"TIOGRANDE"}
+{
+    "NombreJugador": "Adri",
+    "EdadJugador": 7777,
+    "Dinero": 0,
+    "TipoTamapocho": "Gym",
+    "NombreTama": "Delego",
+    "VidaTama": 100,
+    "Energia": 100,
+    "Felicidad": 100,
+    "Nivel": 3,
+    "AtributoEspecial": 23,
+    "Estado": "TIOGRANDE"
+}

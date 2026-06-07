@@ -5,7 +5,43 @@ public class JuegoTam
 
     public static void GameOver(Tamapocho tama)
     {
+        Console.Clear();
         Console.WriteLine($"Has perdido, tu tamapocho {tama.NombreTama} ha muerto");
+        Console.WriteLine($"Nivel alcanzado: {tama.Nivel}");
+        Console.WriteLine($"TamaCoins Disponibles: {tama.Duenyo.Dinero}");
+        TextoMas($"Revivir: 50 TamaCoins");
+        Texto("----Comprar----\n1-SI\n2-NO");
+        int eleccion = Convert.ToInt32(Console.ReadLine());
+
+        if (eleccion == 1)
+        {
+            if (tama.Duenyo.Dinero >= 50)
+            {
+                tama.Duenyo.Dinero -= 50;
+                tama.VidaTama = 100;
+                tama.Energia = 100;
+                tama.Felicidad = 100;
+                Console.WriteLine($"{tama.NombreTama} ha vuelto a la vida!");
+            }
+            else
+            {
+                Console.WriteLine("No tienes suficientes TamaCoins para revivir. Game Over definitivo.");
+            }
+
+
+        }
+        else if (eleccion == 2)
+        {
+
+            Console.WriteLine($"Gracias por jugar. Nivel alcanzado: {tama.Nivel}");
+
+        }
+        else
+        {
+
+            GameOver(tama);
+
+        }
     }
 
     public static void Texto(string texto, int velocidad = 30)
@@ -42,40 +78,142 @@ public class JuegoTam
                 Jugador criadorCargado = new Jugador(datos.NombreJugador, datos.EdadJugador);
                 criadorCargado.Dinero = datos.Dinero;
 
+
+
+
                 switch (datos.TipoTamapocho)
                 {
                     case "Hippie":
+                        TamapochoHippie.EstadoHigh estadoHip;
+                        switch (datos.Estado) //De esta forma si que se guardara el estado ya que antes en el sprint 5 siempre se le fijaba el que ponia yo, en este caso era el normal y eso no tiene sentido
+                        {
+                            case "Castañuela":
+                                estadoHip = TamapochoHippie.EstadoHigh.Castañuela;
+                                break;
 
-                        TamapochoHippie tamaHip = new TamapochoHippie(datos.NombreTama, datos.VidaTama, criadorCargado, datos.Energia, datos.Felicidad, datos.AtributoEspecial, datos.Nivel, true, TamapochoHippie.EstadoHigh.Normal);
+                            case "Empastrao":
+                                estadoHip = TamapochoHippie.EstadoHigh.Empastrao;
+                                break;
+
+                            case "Tofu":
+                                estadoHip = TamapochoHippie.EstadoHigh.Tofu;
+                                break;
+
+                            case "Brote":
+                                estadoHip = TamapochoHippie.EstadoHigh.Brote;
+                                break;
+
+                            case "ModoZen":
+                                estadoHip = TamapochoHippie.EstadoHigh.ModoZen;
+                                break;
+
+                            default:
+                                estadoHip = TamapochoHippie.EstadoHigh.Normal;
+                                break;
+                        }
+                        TamapochoHippie tamaHip = new TamapochoHippie(datos.NombreTama, datos.VidaTama, criadorCargado, datos.Energia, datos.Felicidad, datos.AtributoEspecial, datos.Nivel, true, estadoHip);
                         tamaHip.IniciarJuegoHipp(tamaHip);
                         break;
 
-
                     case "Gym":
+                        TamapochoGymBro.NivelCulturista estadoGym;
+                        switch (datos.Estado)
+                        {
+                            case "CALISTENICO":
+                                estadoGym = TamapochoGymBro.NivelCulturista.CALISTENICO;
+                                break;
 
-                        TamapochoGymBro tamaGym = new TamapochoGymBro(datos.NombreTama, datos.VidaTama, criadorCargado, datos.Energia, datos.Felicidad, (int)datos.AtributoEspecial, datos.Nivel, true, TamapochoGymBro.NivelCulturista.FLAKITO);
+                            case "TIOGRANDE":
+                                estadoGym = TamapochoGymBro.NivelCulturista.TIOGRANDE;
+                                break;
+
+                            case "ENORME":
+                                estadoGym = TamapochoGymBro.NivelCulturista.ENORME;
+                                break;
+
+                            case "CULTURISTANATTY":
+                                estadoGym = TamapochoGymBro.NivelCulturista.CULTURISTANATTY;
+                                break;
+
+                            case "CHUZAO":
+                                estadoGym = TamapochoGymBro.NivelCulturista.CHUZAO;
+                                break;
+
+                            default:
+                                estadoGym = TamapochoGymBro.NivelCulturista.FLAKITO;
+                                break;
+                        }
+                        TamapochoGymBro tamaGym = new TamapochoGymBro(datos.NombreTama, datos.VidaTama, criadorCargado, datos.Energia, datos.Felicidad, (int)datos.AtributoEspecial, datos.Nivel, true, estadoGym);
                         tamaGym.IniciarJuegoGym(tamaGym);
                         break;
 
-
                     case "Infor":
+                        TamapochoInformatico.EstadoEnergetico estadoInfor;
+                        switch (datos.Estado)
+                        {
+                            case "NORMAL":
+                                estadoInfor = TamapochoInformatico.EstadoEnergetico.NORMAL;
+                                break;
 
-                        TamapochoInformatico tamaInfor = new TamapochoInformatico(datos.NombreTama, datos.VidaTama, criadorCargado, datos.Energia, datos.Felicidad, datos.AtributoEspecial, datos.Nivel, true, TamapochoInformatico.EstadoEnergetico.DEPRIMIDO);
+                            case "EMOCIONADO":
+                                estadoInfor = TamapochoInformatico.EstadoEnergetico.EMOCIONADO;
+                                break;
+
+                            case "HIPERACTIVO":
+                                estadoInfor = TamapochoInformatico.EstadoEnergetico.HIPERACTIVO;
+                                break;
+
+                            case "PAROCARDIACO":
+                                estadoInfor = TamapochoInformatico.EstadoEnergetico.PAROCARDIACO;
+                                break;
+
+                            case "SENIOR":
+                                estadoInfor = TamapochoInformatico.EstadoEnergetico.SENIOR;
+                                break;
+
+                            default:
+                                estadoInfor = TamapochoInformatico.EstadoEnergetico.DEPRIMIDO;
+                                break;
+                        }
+                        TamapochoInformatico tamaInfor = new TamapochoInformatico(datos.NombreTama, datos.VidaTama, criadorCargado, datos.Energia, datos.Felicidad, datos.AtributoEspecial, datos.Nivel, true, estadoInfor);
                         tamaInfor.IniciarJuegoInfor(tamaInfor);
                         break;
 
-
                     case "Cunyao":
+                        Tamapochocunyao.EstadodeCunyao estadoCunya;
+                        switch (datos.Estado)
+                        {
+                            case "ConPalilloEnLaboca":
+                                estadoCunya = Tamapochocunyao.EstadodeCunyao.ConPalilloEnLaboca;
+                                break;
 
-                        Tamapochocunyao tamaCunya = new Tamapochocunyao(datos.NombreTama, datos.VidaTama, criadorCargado, datos.Energia, datos.Felicidad, datos.AtributoEspecial, datos.Nivel, true, Tamapochocunyao.EstadodeCunyao.Normal);
+                            case "ExpertoEnCriptos":
+                                estadoCunya = Tamapochocunyao.EstadodeCunyao.ExpertoEnCriptos;
+                                break;
+
+                            case "AsadorDeBarbacoas":
+                                estadoCunya = Tamapochocunyao.EstadodeCunyao.AsadorDeBarbacoas;
+                                break;
+
+                            case "Tolosa":
+                                estadoCunya = Tamapochocunyao.EstadodeCunyao.Tolosa;
+                                break;
+
+                            case "INSUFRIBLE":
+                                estadoCunya = Tamapochocunyao.EstadodeCunyao.INSUFRIBLE;
+                                break;
+
+                            default:
+                                estadoCunya = Tamapochocunyao.EstadodeCunyao.Normal;
+                                break;
+
+                        }
+                        Tamapochocunyao tamaCunya = new Tamapochocunyao(datos.NombreTama, datos.VidaTama, criadorCargado, datos.Energia, datos.Felicidad, datos.AtributoEspecial, datos.Nivel, true, estadoCunya);
                         tamaCunya.IniciarJuegoCunyao(tamaCunya);
                         break;
 
-
                     case "TikTok":
-
                         Genero genero;
-
                         if (datos.Estado == "MUJER")
                         {
                             genero = Genero.MUJER;
@@ -84,10 +222,8 @@ public class JuegoTam
                         {
                             genero = Genero.HOMBRE;
                         }
-
                         TamapochoTikTok tamaTik = new TamapochoTikTok(datos.NombreTama, datos.VidaTama, criadorCargado, datos.Energia, datos.Felicidad, datos.Nivel, true, genero, (int)datos.AtributoEspecial);
                         tamaTik.IniciarJuegoTikToker(tamaTik);
-
                         break;
                 }
                 return;
@@ -113,6 +249,7 @@ public class JuegoTam
         {
 
             case 1:
+                Console.Clear();
                 Texto("Has elegido al Tamapocho hippie \nUna vida llena de paz y hierba te espera....");
                 //(string nombreTama, int vidaTama, Jugador duenyo, int energia, int felicidad, double nivelHigh)
 
@@ -124,6 +261,8 @@ public class JuegoTam
                 break;
 
             case 2:
+                Console.Clear();
+
                 Texto("Has elegido al Tamapocho Gymbro \nEspero que tengas ganas de levantar esos hierros jeje");
                 TextoMas("Nombre="); string nombreTamaGym = Console.ReadLine();
 
@@ -132,6 +271,8 @@ public class JuegoTam
                 break;
 
             case 3:
+                Console.Clear();
+
                 Texto("Has elegido al Tamapocho Informatico \nEspero que estés rapido programando jeje y preparate para beber muchas monsters");
                 TextoMas("Nombre="); string nombreTamaInfor = Console.ReadLine();
 
@@ -141,6 +282,8 @@ public class JuegoTam
 
 
             case 4:
+                Console.Clear();
+
                 Texto("Has elegido al Tamapocho Cuñao \nEspero que tengas bien entrenadas esas bromas pasadas de moda jeje");
                 TextoMas("Nombre="); string nombreTamaCunyao = Console.ReadLine();
                 Tamapochocunyao miTamapochoCunyao = new Tamapochocunyao(nombreTamaCunyao, 100, criador, 100, 100, 0, 0, true, Tamapochocunyao.EstadodeCunyao.Normal);
@@ -148,6 +291,8 @@ public class JuegoTam
                 break;
 
             case 5:
+                Console.Clear();
+
 
                 Genero generoTamaTiktok;
 
