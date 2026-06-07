@@ -8,9 +8,9 @@ public class TamapochoTikTok : Tamapocho, ITamapochotk
     public Genero Sexo;
     public int Seguidores; //He pensado que seria interesante que al igual que en los otros tamapochos hay niveles de algo este no sea menos asi que lo hare segun los seguidores que pueden ir aumentando grabando ttks
 
-    private bool Vivo; // añade esto
+    private bool Vivo; 
 
-    public TamapochoTikTok(string nombreTama, int vidaTama, Jugador duenyo, int energia, int felicidad, int Nivel, bool vivo, /*Exclu*/ Genero sexo, int seguidores) : base(nombreTama, vidaTama, duenyo, energia, felicidad, Nivel, vivo)
+    public TamapochoTikTok(string nombreTama, int vidaTama, Jugador duenyo, int energia, int felicidad, int Nivel, bool vivo, Genero sexo, int seguidores) : base(nombreTama, vidaTama, duenyo, energia, felicidad, Nivel, vivo)
     {
         Sexo = sexo;
         Seguidores = seguidores;
@@ -153,7 +153,7 @@ public class TamapochoTikTok : Tamapocho, ITamapochotk
             }
             else if (eleccion == 4)
             {
-                int monedasGanadas = Minijuego.MinijuegoTikTok(tamapochoTik); // estaba MinijuegoInfor
+                int monedasGanadas = Minijuego.MinijuegoTikTok(tamapochoTik); 
                 Duenyo.Dinero += monedasGanadas;
                 if (monedasGanadas > 0)
                 {

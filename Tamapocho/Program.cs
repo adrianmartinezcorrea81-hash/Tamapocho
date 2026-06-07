@@ -198,7 +198,7 @@ public class JuegoTam
             tama.XP = 0; // resetea el XP al subir de nivel
             Console.WriteLine($"¡NIVEL {tama.Nivel} ALCANZADO!");
 
-            if (tama.Nivel % 10 == 0)
+            if (tama.Nivel % 10 == 0) //cada 10 niveles recompensas
             {
                 Console.WriteLine("¡HITO! Recibes 20 TamCoins y tus stats suben!");
                 tama.Duenyo.Dinero += 20;
