@@ -1,5 +1,5 @@
 ﻿using System.Globalization;
-
+using System.Text.Json;
 public class JuegoTam
 {
 
@@ -7,7 +7,7 @@ public class JuegoTam
     {
         Console.WriteLine($"Has perdido, tu tamapocho {tama.NombreTama} ha muerto");
     }
-    
+
     public static void Texto(string texto, int velocidad = 30)
     {
         foreach (char letra in texto)
@@ -29,9 +29,71 @@ public class JuegoTam
     }
     public static void Main()
     {
-        Tienda tienda= new Tienda();
-        tienda.MostrarItems();
-        
+
+        //VOY A COMPROBAR QUE HAYA PARTIDA ANTES DE PEDIR LOS DATOS AL JUGADOR
+        if (File.Exists("partida.json"))
+        {
+            Texto("Se ha encontrado una partida guardada, ¿Quieres jugarla?\n1-Sí\n2-No");
+            int eleccionCarga = Convert.ToInt32(Console.ReadLine());
+            if (eleccionCarga == 1)
+            {
+                string json = File.ReadAllText("partida.json");
+                DatosPartida datos = JsonSerializer.Deserialize<DatosPartida>(json);
+                Jugador criadorCargado = new Jugador(datos.NombreJugador, datos.EdadJugador);
+                criadorCargado.Dinero = datos.Dinero;
+
+                switch (datos.TipoTamapocho)
+                {
+                    case "Hippie":
+
+                        TamapochoHippie tamaHip = new TamapochoHippie(datos.NombreTama, datos.VidaTama, criadorCargado, datos.Energia, datos.Felicidad, datos.AtributoEspecial, datos.Nivel, true, TamapochoHippie.EstadoHigh.Normal);
+                        tamaHip.IniciarJuegoHipp(tamaHip);
+                        break;
+
+
+                    case "Gym":
+
+                        TamapochoGymBro tamaGym = new TamapochoGymBro(datos.NombreTama, datos.VidaTama, criadorCargado, datos.Energia, datos.Felicidad, (int)datos.AtributoEspecial, datos.Nivel, true, TamapochoGymBro.NivelCulturista.FLAKITO);
+                        tamaGym.IniciarJuegoGym(tamaGym);
+                        break;
+
+
+                    case "Infor":
+
+                        TamapochoInformatico tamaInfor = new TamapochoInformatico(datos.NombreTama, datos.VidaTama, criadorCargado, datos.Energia, datos.Felicidad, datos.AtributoEspecial, datos.Nivel, true, TamapochoInformatico.EstadoEnergetico.DEPRIMIDO);
+                        tamaInfor.IniciarJuegoInfor(tamaInfor);
+                        break;
+
+
+                    case "Cunyao":
+
+                        Tamapochocunyao tamaCunya = new Tamapochocunyao(datos.NombreTama, datos.VidaTama, criadorCargado, datos.Energia, datos.Felicidad, datos.AtributoEspecial, datos.Nivel, true, Tamapochocunyao.EstadodeCunyao.Normal);
+                        tamaCunya.IniciarJuegoCunyao(tamaCunya);
+                        break;
+
+
+                    case "TikTok":
+
+                        Genero genero;
+
+                        if (datos.Estado == "MUJER")
+                        {
+                            genero = Genero.MUJER;
+                        }
+                        else
+                        {
+                            genero = Genero.HOMBRE;
+                        }
+
+                        TamapochoTikTok tamaTik = new TamapochoTikTok(datos.NombreTama, datos.VidaTama, criadorCargado, datos.Energia, datos.Felicidad, datos.Nivel, true, genero, (int)datos.AtributoEspecial);
+                        tamaTik.IniciarJuegoTikToker(tamaTik);
+
+                        break;
+                }
+                return;
+            }
+        }
+
         Texto("Bienvenido a Tamapocho Game");
         Texto("En primer lugar para continuar con tu Aventura deberás asignarte un nombre y tu Edad");
         Console.Write("Nombre= "); string nombre = Console.ReadLine()!;
@@ -49,7 +111,7 @@ public class JuegoTam
 
         switch (eleccion)
         {
-            
+
             case 1:
                 Texto("Has elegido al Tamapocho hippie \nUna vida llena de paz y hierba te espera....");
                 //(string nombreTama, int vidaTama, Jugador duenyo, int energia, int felicidad, double nivelHigh)
@@ -81,8 +143,8 @@ public class JuegoTam
             case 4:
                 Texto("Has elegido al Tamapocho Cuñao \nEspero que tengas bien entrenadas esas bromas pasadas de moda jeje");
                 TextoMas("Nombre="); string nombreTamaCunyao = Console.ReadLine();
-                Tamapochocunyao miTamapochoCunyao = new Tamapochocunyao(nombreTamaCunyao, 100, criador, 100, 100, 0, 0, true,Tamapochocunyao.EstadodeCunyao.Normal);
-                miTamapochoCunyao.IniciarJuegoInfor(miTamapochoCunyao);
+                Tamapochocunyao miTamapochoCunyao = new Tamapochocunyao(nombreTamaCunyao, 100, criador, 100, 100, 0, 0, true, Tamapochocunyao.EstadodeCunyao.Normal);
+                miTamapochoCunyao.IniciarJuegoCunyao(miTamapochoCunyao);
                 break;
 
             case 5:
@@ -95,22 +157,22 @@ public class JuegoTam
 
                 if (sexoTamaTikTok.ToLower() == "hombre" || sexoTamaTikTok.ToLower() == "macho")
                 {
-                     generoTamaTiktok = Genero.HOMBRE;
+                    generoTamaTiktok = Genero.HOMBRE;
                 }
                 else if (sexoTamaTikTok.ToLower() == "mujer" || sexoTamaTikTok.ToLower() == "hembra")
                 {
-                     generoTamaTiktok = Genero.MUJER;
+                    generoTamaTiktok = Genero.MUJER;
 
                 }
                 else
                 {
                     Texto("No entedí ese genero");
                     Texto("Será hombre por defecto");
-                    generoTamaTiktok=Genero.HOMBRE;
+                    generoTamaTiktok = Genero.HOMBRE;
                 }
                 TextoMas("Nombre="); string nombreTamaTik = Console.ReadLine();
-                TamapochoTikTok miTamaTikTok= new TamapochoTikTok(nombreTamaTik,100, criador,100,100,0,true,generoTamaTiktok,0);
-                miTamaTikTok.IniciarJuegoTikToker(miTamaTikTok); 
+                TamapochoTikTok miTamaTikTok = new TamapochoTikTok(nombreTamaTik, 100, criador, 100, 100, 0, true, generoTamaTiktok, 0);
+                miTamaTikTok.IniciarJuegoTikToker(miTamaTikTok);
 
                 break;
 
@@ -124,6 +186,30 @@ public class JuegoTam
 
 
     }
+
+    public static void SubirXP(Tamapocho tama, int cantidad)
+    {
+        tama.XP += cantidad;
+        Console.WriteLine($"+{cantidad} XP! XP actual= {tama.XP}");
+
+        if (tama.XP >= tama.Nivel * 10) // cada nivel necesita 10 XP más que el anterior
+        {
+            tama.Nivel += 1;
+            tama.XP = 0; // resetea el XP al subir de nivel
+            Console.WriteLine($"¡NIVEL {tama.Nivel} ALCANZADO!");
+
+            if (tama.Nivel % 10 == 0)
+            {
+                Console.WriteLine("¡HITO! Recibes 20 TamCoins y tus stats suben!");
+                tama.Duenyo.Dinero += 20;
+                tama.VidaTama += 10;
+                tama.Energia += 10;
+                tama.Felicidad += 10;
+            }
+        }
+    }
+
+
 }
 
 

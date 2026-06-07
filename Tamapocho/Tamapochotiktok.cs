@@ -10,7 +10,7 @@ public class TamapochoTikTok : Tamapocho, ITamapochotk
 
     private bool Vivo; // añade esto
 
-    public TamapochoTikTok(string nombreTama, int vidaTama, Jugador duenyo, int energia, int felicidad, double Nivel, bool vivo, /*Exclu*/ Genero sexo, int seguidores) : base(nombreTama, vidaTama, duenyo, energia, felicidad, Nivel, vivo)
+    public TamapochoTikTok(string nombreTama, int vidaTama, Jugador duenyo, int energia, int felicidad, int Nivel, bool vivo, /*Exclu*/ Genero sexo, int seguidores) : base(nombreTama, vidaTama, duenyo, energia, felicidad, Nivel, vivo)
     {
         Sexo = sexo;
         Seguidores = seguidores;
@@ -101,7 +101,7 @@ public class TamapochoTikTok : Tamapocho, ITamapochotk
     }
     public void IniciarJuegoTikToker(TamapochoTikTok tamapochoTik)
     {
-        
+
         JuegoTam.Texto($"Bienvenido {Duenyo.NombreJug}, has elegido a tu tamapocho a continuación tendrás su información:");
         Console.WriteLine(tamapochoTik);
 
@@ -153,11 +153,19 @@ public class TamapochoTikTok : Tamapocho, ITamapochotk
             }
             else if (eleccion == 4)
             {
-                Duenyo.Dinero += Minijuego.MinijuegoTikTok(tamapochoTik);
+                int monedasGanadas = Minijuego.MinijuegoTikTok(tamapochoTik); // estaba MinijuegoInfor
+                Duenyo.Dinero += monedasGanadas;
+                if (monedasGanadas > 0)
+                {
+                    JuegoTam.SubirXP(tamapochoTik, 1);
+                }
             }
             else if (eleccion == 5)
             {
-                Vivo = false;
+                if (SalirGuardado.SalirTikTok(tamapochoTik, Duenyo))
+                {
+                    Vivo = false;
+                }
             }
             else
             {

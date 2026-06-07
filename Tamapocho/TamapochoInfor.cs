@@ -12,7 +12,7 @@ public class TamapochoInformatico : Tamapocho, ITamInfor
 
     }
 
-    public TamapochoInformatico(string nombreTama, int vidaTama, Jugador duenyo, int energia, int felicidad, double NivelCafeina, double Nivel, bool vivo, EstadoEnergetico estadoEnergetico) : base(nombreTama, vidaTama, duenyo, energia, felicidad, Nivel, vivo)
+    public TamapochoInformatico(string nombreTama, int vidaTama, Jugador duenyo, int energia, int felicidad, double NivelCafeina, int Nivel, bool vivo, EstadoEnergetico estadoEnergetico) : base(nombreTama, vidaTama, duenyo, energia, felicidad, Nivel, vivo)
     {
         this.NivelCafeina = NivelCafeina;
         this.estadoEnergetico = estadoEnergetico;
@@ -124,11 +124,19 @@ public class TamapochoInformatico : Tamapocho, ITamInfor
 
             else if (eleccion == 4)
             {
-                Duenyo.Dinero+=Minijuego.MinijuegoInfor();
+                int monedasGanadas = Minijuego.MinijuegoInfor();
+                Duenyo.Dinero += monedasGanadas;
+                if (monedasGanadas > 0) // Asi solo si acierta gana xp
+                {
+                    JuegoTam.SubirXP(tamaInfor, 1);
+                }
             }
             else if (eleccion == 5)
             {
-                Vivo = false;
+                if (SalirGuardado.SalirInfor(tamaInfor, Duenyo))
+                {
+                    Vivo = false;
+                }
             }
             else
             {

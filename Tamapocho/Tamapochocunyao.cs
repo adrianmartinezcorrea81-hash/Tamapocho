@@ -12,7 +12,7 @@ public class Tamapochocunyao : Tamapocho, Itamcunyao
         Normal, ConPalilloEnLaboca, ExpertoEnCriptos, AsadorDeBarbacoas, Tolosa, INSUFRIBLE //Tolosa(To lo sabe)
     }
 
-    public Tamapochocunyao(string nombreTama, int vidaTama, Jugador duenyo, int energia, int felicidad, double NivelChistes, double Nivel, bool vivo, EstadodeCunyao RangoCunyao) : base(nombreTama, vidaTama, duenyo, energia, felicidad, Nivel, vivo)
+    public Tamapochocunyao(string nombreTama, int vidaTama, Jugador duenyo, int energia, int felicidad, double NivelChistes, int Nivel, bool vivo, EstadodeCunyao RangoCunyao) : base(nombreTama, vidaTama, duenyo, energia, felicidad, Nivel, vivo)
     {
         this.NivelChistes = NivelChistes;
         this.RangoCunyao = RangoCunyao;
@@ -61,7 +61,7 @@ public class Tamapochocunyao : Tamapocho, Itamcunyao
     }
 
 
-    public void IniciarJuegoInfor(Tamapochocunyao tamaCunya)
+    public void IniciarJuegoCunyao(Tamapochocunyao tamaCunya)
     {
 
         JuegoTam.Texto($"Bienvenido {Duenyo.NombreJug}, has elegido a tu tamapocho a continuación tendrás su información:");
@@ -79,6 +79,7 @@ public class Tamapochocunyao : Tamapocho, Itamcunyao
             else if (eleccion == 2)
             {
                 tamaCunya.NivelChistes += ContarChistes();
+                JuegoTam.SubirXP(tamaCunya, 1);
                 if (tamaCunya.NivelChistes <= 5)
                 {
                     tamaCunya.RangoCunyao = EstadodeCunyao.Normal;
@@ -117,12 +118,19 @@ public class Tamapochocunyao : Tamapocho, Itamcunyao
             }
             else if (eleccion == 4)
             {
-                Duenyo.Dinero += Minijuego.MinijuegoCunyao();
-                continue;
+                int monedasGanadas = Minijuego.MinijuegoCunyao();
+                Duenyo.Dinero += monedasGanadas;
+                if (monedasGanadas > 0) // Asi solo si acierta gana xp
+                {
+                    JuegoTam.SubirXP(tamaCunya, 1);
+                }
             }
             else if (eleccion == 5)
             {
-                Vivo = false;
+                if (SalirGuardado.SalirCunyao(tamaCunya, Duenyo))
+                {
+                    Vivo = false;
+                }
             }
             else
             {

@@ -115,6 +115,8 @@ public class Tienda
             comprador.Dinero -= items[numProduct].Precio;//Le descontamos el dinero al comprador 
             comprador.Items.Add(items[numProduct]);
             AplicarEfecto(items[numProduct], tama);
+            JuegoTam.SubirXP(tama, 2); // Asi cuando compras ganas xp
+
 
         }
     }

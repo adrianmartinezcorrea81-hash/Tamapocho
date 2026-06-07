@@ -5,7 +5,7 @@ public class TamapochoGymBro : Tamapocho, IGymbro
     public double FuerzaTama; //En el minijuego que tenga si no tiene la fuerza suficiente para yo que se mover algo que lo tengas que chetar mas 
 
     public NivelCulturista EstadoEnForma;
-    
+
 
     public enum NivelCulturista
     {
@@ -13,7 +13,7 @@ public class TamapochoGymBro : Tamapocho, IGymbro
     }
     private bool Vivo;
 
-    public TamapochoGymBro(string nombreTama, int vidaTama, Jugador duenyo, int energia, int felicidad, int fuerzaTama, double Nivel, bool vivo, NivelCulturista EstadoEnForma) : base(nombreTama, vidaTama, duenyo, energia, felicidad, Nivel, vivo)
+    public TamapochoGymBro(string nombreTama, int vidaTama, Jugador duenyo, int energia, int felicidad, int fuerzaTama, int Nivel, bool vivo, NivelCulturista EstadoEnForma) : base(nombreTama, vidaTama, duenyo, energia, felicidad, Nivel, vivo)
     {
         FuerzaTama = fuerzaTama;
         this.EstadoEnForma = EstadoEnForma;
@@ -51,8 +51,8 @@ public class TamapochoGymBro : Tamapocho, IGymbro
 
     public void IniciarJuegoGym(TamapochoGymBro tamaGym)
     {
-            JuegoTam.Texto($"Bienvenido {Duenyo.NombreJug}, has elegido a tu tamapocho a continuación tendrás su información:");
-            Console.WriteLine(tamaGym);
+        JuegoTam.Texto($"Bienvenido {Duenyo.NombreJug}, has elegido a tu tamapocho a continuación tendrás su información:");
+        Console.WriteLine(tamaGym);
 
         while (Vivo)
         {
@@ -75,6 +75,7 @@ public class TamapochoGymBro : Tamapocho, IGymbro
                     }
                 }
                 FuerzaTama += entrenar();
+                JuegoTam.SubirXP(tamaGym, 1); 
                 if (tamaGym.FuerzaTama <= 5)
                 {
                     tamaGym.EstadoEnForma = NivelCulturista.FLAKITO;
@@ -115,11 +116,19 @@ public class TamapochoGymBro : Tamapocho, IGymbro
             }
             else if (eleccion == 4)
             {
-                Duenyo.Dinero += Minijuego.MinijuegoGym(tamaGym);
+                int monedasGanadas = Minijuego.MinijuegoGym(tamaGym);
+                Duenyo.Dinero += monedasGanadas;
+                if (monedasGanadas > 0) // Asi solo si acierta gana xp
+                {
+                    JuegoTam.SubirXP(tamaGym, 1);
+                }
             }
             else if (eleccion == 5)
             {
-                Vivo = false;
+                if (SalirGuardado.SalirGym(tamaGym, Duenyo))
+                {
+                    Vivo = false;
+                }
             }
             else
             {

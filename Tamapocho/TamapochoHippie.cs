@@ -10,7 +10,7 @@ public class TamapochoHippie : Tamapocho, ITamHippie
     {
         Normal, Castañuela, Empastrao, Tofu, Brote, ModoZen
     }
-    public TamapochoHippie(string nombreTama, int vidaTama, Jugador duenyo, int energia, int felicidad, double nivelHigh, double Nivel, bool vivo, EstadoHigh EstadoFum) : base(nombreTama, vidaTama, duenyo, energia, felicidad, Nivel, vivo)
+    public TamapochoHippie(string nombreTama, int vidaTama, Jugador duenyo, int energia, int felicidad, double nivelHigh, int Nivel, bool vivo, EstadoHigh EstadoFum) : base(nombreTama, vidaTama, duenyo, energia, felicidad, Nivel, vivo)
     {
         NivelHigh = nivelHigh;
         this.EstadoFum = EstadoFum;
@@ -121,11 +121,19 @@ public class TamapochoHippie : Tamapocho, ITamHippie
 
             else if (eleccion == 4)
             {
-                Vivo = false;
+                int monedasGanadas = Minijuego.MinijuegoHippie();
+                Duenyo.Dinero += monedasGanadas;
+                if (monedasGanadas > 0) // Asi solo si acierta gana xp
+                {
+                    JuegoTam.SubirXP(tamaH, 1);
+                }
             }
             else if (eleccion == 5)
             {
-                Vivo = false;
+                if (SalirGuardado.SalirHippie(tamaH, Duenyo))
+                {
+                    Vivo = false;
+                }
             }
             else
             {
